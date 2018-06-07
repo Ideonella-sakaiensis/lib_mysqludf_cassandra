@@ -20,7 +20,75 @@ Provides UDF commands to access Cassandra from Mysql/MariaDB.
 
 Synopsis
 --------
+![Alt text](https://g.gravizo.com/source/figure01?https%3A%2F%2Fraw.githubusercontent.com%2FIdeonella-sakaiensis%2Flib_mysqludf_cassandra%2Fmaster%2FREADME.md?1)
+<details>
+<summary></summary>
+figure01
+  digraph G {
 
+    rankdir = "LR";
+    size ="8,8";
+    edge [
+        fontname = "Consolas"
+        fontsize = 10
+    ];
+    MariaDB [
+        label = "MariaDB\n(presistence)"
+        shape = "box"
+    ];
+    Cassandra [
+        label = "Cassandra\n(cached)"
+        shape = "box"
+    ];
+    edge [
+        fontcolor = "blue"
+        color = "blue"
+    ];
+    writer;
+    writer:e -> MariaDB [
+        label="INSERT\nUPDATE\nDELETE"
+    ];
+    MariaDB -> Cassandra [
+        label = "INSERT\nUPDATE\nDELETE"
+    ];
+    edge [
+        fontcolor = "red"
+        color = "red"
+    ];
+    edge [
+        fontcolor = "default"
+        color = "default"
+        dir ="none"
+        arrowhead="none"
+        arrowtail="none"
+        penwidth = 0.5
+        style="dashed"
+    ];
+    node [
+        fontname = "Consolas"
+        fontsize = 10
+        penwidth = 0.5
+        color    = "gray"
+        shape = "record"
+        style = "rounded"
+    ];
+    MariaDB_Data [
+      label = <<TABLE border="0" cellspacing="0" cellborder="1"><TR><TD COLSPAN="2">MariaDB data</TD></TR><TR><TD>item</TD><TD>qty</TD></TR><TR><TD>shoes</TD><TD>35</TD></TR><TR><TD>books</TD><TD>158</TD></TR></TABLE>>
+    ];
+    {
+      rank = "same";
+      MariaDB:n -> MariaDB_Data:s;
+    }
+    Cassandra_Data [
+      label = <<TABLE border="0" cellspacing="0" cellborder="1"><TR><TD COLSPAN="2">Cassandra data</TD></TR><TR><TD>item</TD><TD>qty</TD></TR><TR><TD>shoes</TD><TD>35</TD></TR><TR><TD>books</TD><TD>158</TD></TR></TABLE>>
+    ];
+    {
+      rank = "same";
+      Cassandra:n -> Cassandra_Data:s;
+    }
+  }
+figure01
+</details>
 
 
 [Back to TOC](#table-of-contents)
