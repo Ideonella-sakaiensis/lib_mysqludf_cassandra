@@ -55,15 +55,6 @@ figure01
         fontcolor = "red"
         color = "red"
     ];
-    edge [
-        fontcolor = "default"
-        color = "default"
-        dir ="none"
-        arrowhead="none"
-        arrowtail="none"
-        penwidth = 0.5
-        style="dashed"
-    ];
     node [
         fontname = "Consolas"
         fontsize = 10
